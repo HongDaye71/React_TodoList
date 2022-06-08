@@ -1,38 +1,241 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #5a6170;
+}
+
+.background {
+  background-color: #f3f3f3;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /*
+  [요소 가운데 정렬]
+  1. flex설정 
+  -> css display default: block or inline
+  block: 자신이 가질 수 있는 가장 넓은 가로 공간을 차지
+  flex: 자신이 가진 콘텐츠의 가로 폭 만큼만 공간을 차지
+    -> 개발자도구 확인 결과, background-main의 dsiplay default value는 block임. 따라서 justify-content를 통해 수평정렬을 지정하여도 display:flex를 별도 선언해주지 않으면 요소가 수평정렬되지 않음
+
+  2. align-items: center
+  -> 수직기준 가운데정렬
+  3. justify-content: center
+  -> 수평기준 가운데정렬
+  */
 }
 
-.App-link {
-  color: #61dafb;
+.background-main{
+  width: 80%;
+  height: 80%;
+  overflow: scroll;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.background-main::-webkit-scrollbar{
+  display: none;
+}
+
+.background-main h1{
+  color:rgba(0,0,0,0.6);
+  width: 100%;
+  font-size: 30px;
+  font-weight: bolder;
+} 
+
+.monthTodo{
+  padding: 20px;
+  margin: 1% 3% 1% 3%;
+  box-sizing: border-box;
+  border-radius: 1%;
+  list-style: none;
+  width: 370px;
+  height: 230px;
+  box-shadow: -10px -10px 15px rgba(255,255,255,0.5),
+            10px 10px 15px rgba(70,70,70,0.12);
+
+/*
+[div와 span의 차이]
+div: block의 대표적인 태그
+span: inline의 대표적인 태그
+
+block: 컨텐츠의 높이와 부모의 너비만큼 영역을 차지한다. width, height, margine등의 css값이 정상적용됨으로 레이아웃을 잡기 위해서는 block을 사용해야 한다.
+inline: 컨텐츠 높이와 너비만큼 영역을 차지한다. width, height, margin등의 css값이 정상적용되지 않으므로 레이아웃을 잡는 목적으로 사용하지 않는다. 보통 문장 안의 글자를 강조하거나 디자인을 입히려는 목적으로 사용된다.
+
+[box-sizing: border-box]
+widhth에 padding, margin포함 
+*/
+}
+
+.monthTodo .month {
+  color:rgba(0,0,0,0.6);
+}
+
+.monthTodo .report {
+  font-size: 15px;
+  color:rgba(0,0,0,0.3);
+  font-weight: 900;
+}
+
+.monthTodo .count {
+  color:rgba(0,0,0,0.3);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.monthTodo .month-goal-input {
+  margin-top: 5%;
+  width: 96%;
+  height: 40px;
+  color:rgba(255,255,255,1);
+  font-size: 15px;
+  text-align: center;
+  transition: all .4s;
+}
+
+.monthTodo .month-goal-input::placeholder {
+  color:rgba(255,255,255,1);
+}
+
+.monthTodo .month-goal-input:focus {
+  outline:none;
+}
+
+.monthTodo .month-goal-input-noSubmitted {
+  background-color: #c8d3d5;
+  border: solid 2px #c8d3d5; border-radius: 30px;
+}
+
+.monthTodo .month-goal-input-Submitted {
+  background-color: #6e8387;
+  border: solid 2px #6e8387; border-radius: 30px;
+}
+
+.monthTodo .view-dayTodo-btn {
+  position: relative;
+  left: 88%;
+}
+
+.monthTodoList {
+  /*opacity: 0.2;*/
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /*
+  flex-wrap: 
+  nowrap: 줄 바꿈을 하지 않고, 모든 아이템을 한 줄에 표시
+  wrap: 브라우저 사이즈가 줄어들면, 자동으로 여러 줄 표시
+  wrap-reverse: 브라우저 사이즈가 줄어들면, 역방향으로 여러 줄 표시
+  */
+}
+
+.dayTodoList-hidden{
+  visibility: hidden;
+}
+
+.dayTodoList-visible {
+  padding-top: 1.5%;
+  position:fixed;
+  top:17%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 75%;
+  height:75%;
+  background-color: white;
+  border-radius: 1%;
+  animation: fadein .5s;
+}
+
+.dayTodo {
+  list-style: none;
+  padding: .5%;
+}
+
+.day-todo-month-goal{
+  font-size: 20px;
+}
+
+.day-todo-close{
+  font-size:medium;
+  cursor: pointer;
+}
+
+.day-goal-input {
+  margin-top: 5%;
+  width: 70%;
+  height: 40px;
+  font-size: 17px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-color: #c8d3d5;
+  color: #6e8387;
+  transition: all .4s;
+}
+
+.day-goal-input::placeholder {
+  color: #6e8387;
+  font-size:17px;
+}
+
+.day-goal-input:focus {
+  outline:none;
+}
+
+.day-goal-checkbox{
+  font-size:medium;
+  margin-left: .7%;
+  color: green;
+  cursor: pointer;
+}
+
+.day-goal-delete{
+  font-size:medium;
+  margin-left: .3%;
+  color: darkred;
+  cursor: pointer;
+}
+
+.day-goal-name-Finished{
+  text-decoration-line: line-through;
+}
+
+
+@media (max-width: 600px) {
+  .monthTodo{
+    margin: 1% 3% 10% 3%;
+    width: 370px;
+    height: 230px;
   }
-  to {
-    transform: rotate(360deg);
+  .background-main h1{
+    font-size: 26px;
+  } 
+  .monthTodo .horizontal-line {
+    font-size: 11px;
+  }
+  .monthTodo .count {
+    font-size: 14px;
+  }
+  .monthTodo .goal-input {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dayTodoList-visible {
+    padding-top: 3%;
   }
 }
