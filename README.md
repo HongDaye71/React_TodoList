@@ -1,5 +1,5 @@
 # :+1: To Do List
-버튼클릭을 통해 화면 내 숫자를 증가 및 감소하는 페이지 생성
+To Do List is a website where you can write and record your montly and daily goals
 
 # Development Period
 From June 1, 2022 to June 8, 2022
